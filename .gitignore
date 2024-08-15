@@ -1,0 +1,20 @@
+/check_path_mete
+/*.sh
+/*.out
+
+# ML model files
+/model/intensity_model_rf.json
+/model/spread_model.h5
+/model/model_normalization_coef.txt
+
+# Input folder
+/input/20*/
+/input/namelist_*
+
+# Output folder 
+/output/20*/
+
+# Source code
+/src/__pycache__/
+/src/post_analysis.py
+/src/model_score.py

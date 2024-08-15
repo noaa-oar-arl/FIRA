@@ -1,0 +1,35 @@
+frp_input    = rave.frp.conus
+model_input  = fire.init.conus
+model_output = fire.pred.conus
+
+frp_source = 0
+
+time_start = 202408071200
+time_end   = 202408081100
+time_freq  = 1
+
+lat_lower_left  = 32
+lat_upper_right = 42
+lon_lower_left  = -125
+lon_upper_right = -115
+
+opt_frpgen     = 1 
+opt_inputgen   = 1
+opt_forecast   = 1   
+opt_intensity  = 1 
+opt_mapgen     = 1
+opt_evaluation = 1
+
+emi_scale = 1
+
+man_fire = 0
+man_lat  = 38.68
+man_lon  = -78.35
+man_lvl  = 200
+
+path_frp  = /scratch/whung/fire_alarm/rave
+path_elv  = /groups/ESS/whung/Alldata/GMCollections
+path_ast  = /groups/ESS/whung/Alldata/VIIRS_AST
+path_fh   = /groups/ESS/whung/Alldata/GLAD_FH
+path_vhi  = /groups/ESS/whung/Alldata/VIIRS_VHP
+path_mete = /scratch/whung/fire_alarm/20240807
