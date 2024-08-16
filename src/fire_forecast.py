@@ -66,9 +66,9 @@ def spread_forecast(f_input, f_output):
     
     ## variable list
     firelist   = ['frp']
-    geolist    = ['lat', 'lon', 'elv', 'ast', 'doy', 'time']
+    geolist    = ['lat', 'lon', 'elv', 'ast', 'doy', 'hour']
     veglist    = ['fh', 'vhi']
-    metlist    = ['t2m', 'sh2', 'tp', 'wd', 'ws']
+    metlist    = ['t2m', 'sh2', 'prate', 'wd', 'ws']
     INPUTLIST  = firelist + geolist + veglist + metlist 
     OUTPUTLIST = ['frp_f']
 

@@ -1,6 +1,7 @@
 /check_path_mete
 /*.sh
 /*.out
+/*.zip
 
 # ML model files
 /model/intensity_model_rf.json

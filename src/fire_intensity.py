@@ -8,7 +8,6 @@ import numpy as np
 import pandas as pd
 from netCDF4 import Dataset
 import xgboost as xgb
-import pickle
 
 import warnings
 warnings.simplefilter(action='ignore')

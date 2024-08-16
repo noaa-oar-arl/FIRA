@@ -26,24 +26,24 @@ def file_finder(item, date, initial_hour, hour):
     namelist = namelist[1]
 
     if item == 'elv':
-        return str(namelist[23].replace(' ', ''))+'/ELEV_4X_1Y_V1_Yamazaki.nc'
+        return str(namelist[22].replace(' ', ''))+'/ELEV_4X_1Y_V1_Yamazaki.nc'
     elif item == 'ast':
-        return str(namelist[24].replace(' ', ''))+'/VIIRS_AST_2020_grid3km.nc'
+        return str(namelist[23].replace(' ', ''))+'/VIIRS_AST_2020_grid3km.nc'
     elif item == 'fh':
-        return str(namelist[25].replace(' ', ''))+'/GLAD_FH_grid3km_2020.nc'
+        return str(namelist[24].replace(' ', ''))+'/GLAD_FH_grid3km_2020.nc'
     elif item == 'vhi':
         week     = datetime(int(date[:4]), int(date[4:6]), int(date[6:])).isocalendar().week
         lastweek = datetime(int(date[:4]), 12, 31).isocalendar().week
         if week == lastweek:
-            return str(namelist[26].replace(' ', ''))+'/npp/VHP.G04.C07.npp.P2020'+('%03d'%(lastweek-1))+'.VH.nc', \
-                   str(namelist[26].replace(' ', ''))+'/j01/VHP.G04.C07.j01.P2020'+('%03d'%(lastweek-1))+'.VH.nc'
+            return str(namelist[25].replace(' ', ''))+'/npp/VHP.G04.C07.npp.P2020'+('%03d'%(lastweek-1))+'.VH.nc', \
+                   str(namelist[25].replace(' ', ''))+'/j01/VHP.G04.C07.j01.P2020'+('%03d'%(lastweek-1))+'.VH.nc'
         else:
-            return str(namelist[26].replace(' ', ''))+'/npp/VHP.G04.C07.npp.P2020'+('%03d'%week)+'.VH.nc', \
-                   str(namelist[26].replace(' ', ''))+'/j01/VHP.G04.C07.j01.P2020'+('%03d'%week)+'.VH.nc'
-    elif (item == 't2m') or (item == 't2m_f') or (item == 'sh2') or (item == 'sh2_f') or (item == 'wd') or (item == 'wd_f') or (item == 'ws') or (item == 'ws_f') or (item == 'midws') or (item == 'midws_prefire'):
-        return str(namelist[27].replace(' ', ''))+'/hrrr.t'+initial_hour+'z.wrfsfcf'+('%02d'%hour)+'.grib2'
-    elif (item == 'tp') or (item == 'tp_f'):
-        return str(namelist[27].replace(' ', ''))+'/hrrr.t'+initial_hour+'z.wrfsfcf'+('%02d'%hour)+'.grib2'
+            return str(namelist[25].replace(' ', ''))+'/npp/VHP.G04.C07.npp.P2020'+('%03d'%week)+'.VH.nc', \
+                   str(namelist[25].replace(' ', ''))+'/j01/VHP.G04.C07.j01.P2020'+('%03d'%week)+'.VH.nc'
+    elif (item == 't2m') or (item == 'sh2') or (item == 'wd') or (item == 'ws'):
+        return str(namelist[26].replace(' ', ''))+'/hrrr.t'+initial_hour+'z.wrfsfcf'+('%02d'%hour)+'.grib2'
+    elif (item == 'prate'):
+        return str(namelist[26].replace(' ', ''))+'/hrrr.t'+initial_hour+'z.wrfsfcf'+('%02d'%hour)+'.grib2'
 
 def mapping(xgrid, ygrid, data, xdata, ydata, map_method, fill_value):
     output = griddata((xdata, ydata), data, (xgrid, ygrid), method=map_method, fill_value=fill_value)
@@ -83,7 +83,7 @@ def add_manual_fire(frp_map, lat_map, lon_map, flat, flon, flvl):
 def main_driver(initial_hour, forecast_hour, f_input, f_output, lat_lim, lon_lim):
     namelist    = pd.read_csv('./input/namelist', header=None, delimiter='=')
     namelist    = namelist[1]
-    manual_fire = int(namelist[18])
+    manual_fire = int(namelist[17])
 
 
     '''Global Settings'''
@@ -93,9 +93,9 @@ def main_driver(initial_hour, forecast_hour, f_input, f_output, lat_lim, lon_lim
     
     ## variable list
     firelist   = ['frp']
-    geolist    = ['elv', 'ast', 'doy', 'time']
+    geolist    = ['elv', 'ast', 'doy', 'hour']
     veglist    = ['fh', 'vhi']
-    metlist    = ['t2m', 'sh2', 'tp', 'wd', 'ws']
+    metlist    = ['t2m', 'sh2', 'prate', 'wd', 'ws']
     INPUTLIST  = firelist + geolist + veglist + metlist 
 
 
@@ -110,9 +110,9 @@ def main_driver(initial_hour, forecast_hour, f_input, f_output, lat_lim, lon_lim
         del readin
 
         if manual_fire == 1:
-            man_lat = np.array(str(namelist[19].replace(' ', '')).split(',')).astype(float)
-            man_lon = np.array(str(namelist[20].replace(' ', '')).split(',')).astype(float)
-            man_lvl = np.array(str(namelist[21].replace(' ', '')).split(',')).astype(float)
+            man_lat = np.array(str(namelist[18].replace(' ', '')).split(',')).astype(float)
+            man_lon = np.array(str(namelist[19].replace(' ', '')).split(',')).astype(float)
+            man_lvl = np.array(str(namelist[20].replace(' ', '')).split(',')).astype(float)
             add_manual_fire(FRP, LAT, LON, man_lat, man_lon, man_lvl)
             print('---- Warning!!! Manual fire added!!!')
             del [man_lat, man_lon, man_lvl]
@@ -238,7 +238,7 @@ def main_driver(initial_hour, forecast_hour, f_input, f_output, lat_lim, lon_lim
     del data
     
     
-    ## time
+    ## hour
     readin = Dataset('./fix/timezones_voronoi_1x1.nc')
     yt     = np.flip(readin['lat'][:])
     xt     = readin['lon'][:]
@@ -272,7 +272,7 @@ def main_driver(initial_hour, forecast_hour, f_input, f_output, lat_lim, lon_lim
     data[data<0]  = data[data<0]+24
     data[data>24] = data[data>24]-24
     
-    INPUT[:, :, INPUTLIST.index('time')] = np.copy(data).astype(int)
+    INPUT[:, :, INPUTLIST.index('hour')] = np.copy(data).astype(int)
 
     readin.close()
     del [readin, xt, xt_grid, yt, yt_grid, offset, offset_grid, data]
@@ -458,11 +458,11 @@ def main_driver(initial_hour, forecast_hour, f_input, f_output, lat_lim, lon_lim
     del [filename, readin, yt, xt, data, data_grid]
     
     
-    ## tp 
-    filename = file_finder('tp', dd, initial_hour, forecast_hour)
+    ## prate 
+    filename = file_finder('prate', dd, initial_hour, forecast_hour)
     
     if os.path.isfile(filename) == False:
-        print('---- Incorrect input file:', 'tp', 'Terminated!')
+        print('---- Incorrect input file:', 'prate', 'Terminated!')
         print(filename)
         return 1
    
@@ -475,7 +475,7 @@ def main_driver(initial_hour, forecast_hour, f_input, f_output, lat_lim, lon_lim
     data_grid = mapping(LAT, LON, data.flatten(), yt.flatten(), xt.flatten(), 'linear', np.nan)
     data_grid[data_grid<0] = np.nan
     
-    INPUT[:, :, INPUTLIST.index('tp')] = np.copy(data_grid)
+    INPUT[:, :, INPUTLIST.index('prate')] = np.copy(data_grid)
 
     readin.close()
     del [filename, readin, yt, xt, data, data_grid]
@@ -644,14 +644,14 @@ def main_driver(initial_hour, forecast_hour, f_input, f_output, lat_lim, lon_lim
     
     
     '''Scaling'''
-    for X in ['frp', 'tp']:   #, 'tp_f']:
+    for X in ['frp', 'prate']:
         i  = INPUTLIST.index(X)
         X1 = np.copy(INPUTFRAME[:, :, :, i])
         X1[X1!=0] = np.log(X1[X1!=0])
         INPUTFRAME[:, :, :, i] = np.copy(X1)
         del [i, X1]
     
-    for X in ['sh2', 'ws']:   #, 'sh2_f', 'ws_f']:  #, 'flamews']:
+    for X in ['sh2', 'ws']:
         i  = INPUTLIST.index(X)
         X1 = np.copy(INPUTFRAME[:, :, :, i])
         X1 = np.sqrt(X1)

@@ -6,11 +6,10 @@ This script is used for simple FRP map plotting.
 
 import numpy as np
 import pandas as pd
-import seaborn as sns
 from netCDF4 import Dataset
 import matplotlib.pyplot as plt
 import matplotlib.cm as cm
-import os, fnmatch, sys
+import os, fnmatch
 from mpl_toolkits.basemap import Basemap
 
 import warnings

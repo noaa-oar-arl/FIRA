@@ -20,8 +20,6 @@ opt_intensity  = 1
 opt_mapgen     = 1
 opt_evaluation = 1
 
-emi_scale = 1
-
 man_fire = 0
 man_lat  = 38.68
 man_lon  = -78.35
