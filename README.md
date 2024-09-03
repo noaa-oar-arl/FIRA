@@ -17,7 +17,7 @@ Repository for a fire spread forecast model, generating hourly fire radiative po
 
 ## Components
 
-Trained machine learning models are available on Hera: `/scratch1/RDARCH/rda-arl-gpu/Wei-ting.Hung/fira_models.zip`
+Trained machine learning models are available in `model/fira_models.zip`
 
 | **Source Code (Python Script)**   | **Script Description**                                                                                             | 
 | --------------------------------- | ------------------------------------------------------------------------------------------------------------------ | 
