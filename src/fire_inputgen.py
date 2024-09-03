@@ -153,6 +153,7 @@ def main_driver(initial_hour, forecast_hour, f_input, f_output, lat_lim, lon_lim
     readin = Dataset(filename)
     yt     = readin['lat'][:]
     xt     = readin['lon'][:]
+    xt[xt<0] = xt[xt<0]+360
     index1 = np.squeeze(np.argwhere((yt>=lat_lim[0]) & (yt<=lat_lim[1])))
     index2 = np.squeeze(np.argwhere((xt>=lon_lim[0]) & (xt<=lon_lim[1])))
 
@@ -197,6 +198,7 @@ def main_driver(initial_hour, forecast_hour, f_input, f_output, lat_lim, lon_lim
     xt     = readin['lon'][0, :]
     yt     = np.round(yt, 3)
     xt     = np.round(xt, 3)
+    xt[xt<0] = xt[xt<0]+360
     index1 = np.squeeze(np.argwhere((yt>=lat_lim[0]) & (yt<=lat_lim[1])))
     index2 = np.squeeze(np.argwhere((xt>=lon_lim[0]) & (xt<=lon_lim[1])))
     
@@ -242,6 +244,7 @@ def main_driver(initial_hour, forecast_hour, f_input, f_output, lat_lim, lon_lim
     readin = Dataset('./fix/timezones_voronoi_1x1.nc')
     yt     = np.flip(readin['lat'][:])
     xt     = readin['lon'][:]
+    xt[xt<0] = xt[xt<0]+360
     index1 = np.squeeze(np.argwhere((yt>=lat_lim[0]) & (yt<=lat_lim[1])))
     index2 = np.squeeze(np.argwhere((xt>=lon_lim[0]) & (xt<=lon_lim[1])))
     
@@ -291,6 +294,7 @@ def main_driver(initial_hour, forecast_hour, f_input, f_output, lat_lim, lon_lim
     xt     = readin['lon'][0, :]
     yt     = np.round(yt, 3)
     xt     = np.round(xt, 3)
+    xt[xt<0] = xt[xt<0]+360
     index1 = np.squeeze(np.argwhere((yt>=lat_lim[0]) & (yt<=lat_lim[1])))
     index2 = np.squeeze(np.argwhere((xt>=lon_lim[0]) & (xt<=lon_lim[1])))
     
@@ -340,6 +344,7 @@ def main_driver(initial_hour, forecast_hour, f_input, f_output, lat_lim, lon_lim
     xt       = readin['longitude'][:]
     yt       = np.round(yt, 3)
     xt       = np.round(xt, 3)
+    xt[xt<0] = xt[xt<0]+360
     vci_npp = np.flipud(np.asarray(readin['VCI'][:]))
     tci_npp = np.flipud(np.asarray(readin['TCI'][:]))
     index1  = np.squeeze(np.argwhere((yt>=lat_lim[0]) & (yt<=lat_lim[1])))
@@ -424,7 +429,7 @@ def main_driver(initial_hour, forecast_hour, f_input, f_output, lat_lim, lon_lim
     
     readin = xr.open_dataset(filename, engine='cfgrib', filter_by_keys={'typeOfLevel': 'heightAboveGround', 'level': 2})
     yt     = readin['latitude'].data
-    xt     = readin['longitude'].data-360
+    xt     = readin['longitude'].data
     data   = readin['t2m'].data
 
     data_grid = mapping(LAT, LON, data.flatten(), yt.flatten(), xt.flatten(), 'linear', np.nan)
@@ -446,7 +451,7 @@ def main_driver(initial_hour, forecast_hour, f_input, f_output, lat_lim, lon_lim
    
     readin = xr.open_dataset(filename, engine='cfgrib', filter_by_keys={'typeOfLevel': 'heightAboveGround', 'level': 2})
     yt     = readin['latitude'].data
-    xt     = readin['longitude'].data-360
+    xt     = readin['longitude'].data
     data   = readin['sh2'].data
     
     data_grid = mapping(LAT, LON, data.flatten(), yt.flatten(), xt.flatten(), 'linear', np.nan)
@@ -468,7 +473,7 @@ def main_driver(initial_hour, forecast_hour, f_input, f_output, lat_lim, lon_lim
    
     readin = xr.open_dataset(filename, engine='cfgrib', filter_by_keys={'typeOfLevel':'surface', 'stepType': 'instant'})
     yt     = readin['latitude'].data
-    xt     = readin['longitude'].data-360
+    xt     = readin['longitude'].data
     data   = readin['prate'].data
     data   = data*3600      # kg m-2 s-1 -> hourly accumulation
     
@@ -491,7 +496,7 @@ def main_driver(initial_hour, forecast_hour, f_input, f_output, lat_lim, lon_lim
     
     readin = xr.open_dataset(filename, engine='cfgrib', filter_by_keys={'typeOfLevel': 'heightAboveGround', 'level': 10})
     yt     = readin['latitude'].data
-    xt     = readin['longitude'].data-360
+    xt     = readin['longitude'].data
     u      = readin['u10'].data
     v      = readin['v10'].data
     

@@ -9,7 +9,7 @@ DATA SOURCE: RAVE
 import numpy as np
 import pandas as pd
 from netCDF4 import Dataset
-import os
+import os, fnmatch
 
 import warnings
 warnings.simplefilter(action='ignore')
@@ -29,9 +29,9 @@ def preprocessor(filename, time, lat_lim, lon_lim):
 
 
     '''Reading Data'''
-    #fname = 'Hourly_Emissions_3km_'+date+'0000_'+date+'2300.nc'
-    fname = 'RAVE-HrlyEmiss-3km_v2r0_blend_s'+date+hour+'0000'
-    f_ori = [f for f in os.listdir(path_frp) if fname in f][0]
+    fname_beta = 'Hourly_Emissions_3km_'+date+'0000_'+date+'2300.nc'
+    fname      = 'RAVE-HrlyEmiss-3km_v*r*_blend_s'+date+hour+'00000_e'+date+hour+'59590*.nc'
+    f_ori = [f for f in os.listdir(path_frp) if fnmatch.fnmatch(f, fname_beta) or fnmatch.fnmatch(f, fname)][0]
     f_ori = path_frp + '/' + f_ori
 
     if os.path.isfile(f_ori) == True:
@@ -48,8 +48,6 @@ def preprocessor(filename, time, lat_lim, lon_lim):
         qa = np.flipud(qa)
         data[qa==1] = 0             # use QA = 2 and 3 only
 
-        xt[xt>180] = xt[xt>180]-360
-    
         index1  = np.squeeze(np.argwhere((yt>=lat_lim[0]) & (yt<=lat_lim[1])))
         index2  = np.squeeze(np.argwhere((xt>=lon_lim[0]) & (xt<=lon_lim[1])))
 

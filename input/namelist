@@ -4,14 +4,14 @@ model_output = fire.pred.conus
 
 frp_source = 0
 
-time_start = 202408071200
-time_end   = 202408081100
+time_start = 202407272300
+time_end   = 202407282200
 time_freq  = 1
 
-lat_lower_left  = 32
-lat_upper_right = 42
-lon_lower_left  = -125
-lon_upper_right = -115
+lat_lower_left  = 0
+lat_upper_right = 82
+lon_lower_left  = 140
+lon_upper_right = 335
 
 opt_frpgen     = 1 
 opt_inputgen   = 1
@@ -30,4 +30,4 @@ path_elv  = /groups/ESS/whung/Alldata/GMCollections
 path_ast  = /groups/ESS/whung/Alldata/VIIRS_AST
 path_fh   = /groups/ESS/whung/Alldata/GLAD_FH
 path_vhi  = /groups/ESS/whung/Alldata/VIIRS_VHP
-path_mete = /scratch/whung/fire_alarm/20240807
+path_mete = /scratch/whung/fire_alarm/20240727

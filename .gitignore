@@ -1,7 +1,6 @@
 /check_path_mete
 /*.sh
 /*.out
-/*.zip
 
 # ML model files
 /model/intensity_model_rf.json
@@ -19,3 +18,4 @@
 /src/__pycache__/
 /src/post_analysis.py
 /src/model_score.py
+/src/rave_emission_cal.py
