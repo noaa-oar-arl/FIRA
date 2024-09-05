@@ -2,13 +2,12 @@
 
 Repository for a fire spread forecast model, generating hourly fire radiative power (FRP) prediction for air quality forecasting applications.
 
-## Requred python libraries
+## Required Python libraries
 
-- Numpy 
+- NumPy
 - pandas
 - SciPy
 - MetPy
-- datetime
 - netCDF4
 - Matplotlib (for output plotting only)
 - Tensorflow
