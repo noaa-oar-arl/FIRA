@@ -6,6 +6,7 @@ Repository for a fire spread forecast model, generating hourly fire radiative po
 
 - NumPy
 - pandas
+- xarray
 - SciPy
 - MetPy
 - netCDF4
