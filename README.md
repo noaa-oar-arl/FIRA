@@ -4,15 +4,15 @@ Repository for a fire spread forecast model, generating hourly fire radiative po
 
 ## Required Python libraries
 
-- NumPy
-- pandas
-- xarray
-- SciPy
+- Keras
+- Matplotlib (for output plotting only)
 - MetPy
 - netCDF4
-- Matplotlib (for output plotting only)
+- NumPy
+- pandas
+- SciPy
 - Tensorflow
-- Keras
+- xarray
 - XGBoost
 
 ## Components
