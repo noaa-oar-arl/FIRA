@@ -681,9 +681,21 @@ def main_driver(initial_hour, forecast_hour, f_input, f_output, lat_lim, lon_lim
         ]
 
         if "INPUTFRAME" in locals():
-            INPUTFRAME = np.append(INPUTFRAME, np.expand_dims(X_fire, axis=0), axis=0)
-            LATFRAME = np.append(LATFRAME, np.expand_dims(X_lat, axis=0), axis=0)
-            LONFRAME = np.append(LONFRAME, np.expand_dims(X_lon, axis=0), axis=0)
+            INPUTFRAME = np.append(
+                INPUTFRAME,
+                np.expand_dims(X_fire, axis=0),
+                axis=0,
+            )  # noqa: F821
+            LATFRAME = np.append(
+                LATFRAME,
+                np.expand_dims(X_lat, axis=0),
+                axis=0,
+            )  # noqa: F821
+            LONFRAME = np.append(
+                LONFRAME,
+                np.expand_dims(X_lon, axis=0),
+                axis=0,
+            )  # noqa: F821
         else:
             INPUTFRAME = np.expand_dims(X_fire, axis=0)
             LATFRAME = np.expand_dims(X_lat, axis=0)
