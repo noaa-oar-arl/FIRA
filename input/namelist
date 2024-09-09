@@ -13,10 +13,10 @@ lat_upper_right = 82
 lon_lower_left  = 140
 lon_upper_right = 335
 
-opt_frpgen     = 1 
+opt_frpgen     = 1
 opt_inputgen   = 1
-opt_forecast   = 1   
-opt_intensity  = 1 
+opt_forecast   = 1
+opt_intensity  = 1
 opt_mapgen     = 1
 opt_evaluation = 1
 

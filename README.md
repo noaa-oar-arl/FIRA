@@ -19,8 +19,8 @@ Repository for a fire spread forecast model, generating hourly fire radiative po
 
 Trained machine learning models are available in `model/fira_models.zip`
 
-| **Source Code (Python Script)**   | **Script Description**                                                                                             | 
-| --------------------------------- | ------------------------------------------------------------------------------------------------------------------ | 
+| **Source Code (Python Script)**   | **Script Description**                                                                                             |
+| --------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
 | `fire_model`                      | Main driver of FIRA                                                                                                |
 | `rave_preprocessor`               | Data preprocessor for initial FRP data from RAVE                                                                   |
 | `fire_inputgen`                   | Model input generator, including data re-gridding, fire frame selection and filtering, scaling, and normalization  |
@@ -31,8 +31,8 @@ Trained machine learning models are available in `model/fira_models.zip`
 
 ## Namelist settings
 
-| **Namelist Option** | **Option Description**                                                 | 
-| ------------------- | ---------------------------------------------------------------------- | 
+| **Namelist Option** | **Option Description**                                                 |
+| ------------------- | ---------------------------------------------------------------------- |
 | Filename specification                                                                       |
 | `frp_input`         | Filename of FRP input files                                            |
 | `model_input`       | Filename of FIRA input files                                           |
@@ -75,8 +75,8 @@ Trained machine learning models are available in `model/fira_models.zip`
 
 2. Input netCDF file components:
 
-| **Variable Name**   | **Variable Description**                                                           | 
-| ------------------- | ---------------------------------------------------------------------------------- | 
+| **Variable Name**   | **Variable Description**                                                           |
+| ------------------- | ---------------------------------------------------------------------------------- |
 | `time`              | Time in UTC                                                                        |
 | `INPUTLIST`         | List of input variables                                                            |
 | `input_noscale`     | Input variables per fire frames before scaling and normalization (units vary)      |
@@ -112,8 +112,8 @@ Trained machine learning models are available in `model/fira_models.zip`
 
 2. Output netCDF file components:
 
-| **Variable Name**   | **Variable Description**                                               | 
-| ------------------- | ---------------------------------------------------------------------- | 
+| **Variable Name**   | **Variable Description**                                               |
+| ------------------- | ---------------------------------------------------------------------- |
 | `time`              | Time of FRP prediction in UTC                                          |
 | `INPUTLIST`         | List of input variables                                                |
 | `frame_predic_ori`  | Original fire spread prediction per fire frames (dimensionless)        |
@@ -124,4 +124,3 @@ Trained machine learning models are available in `model/fira_models.zip`
 | `grid_predic`       | Gridded FRP prediction (MW)                                            |
 | `grid_lat`          | Latitude of gridded FRP prediction (degree)                            |
 | `grid_lon`          | Longitude of gridded FRP prediction (degree)                           |
-
