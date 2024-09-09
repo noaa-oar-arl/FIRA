@@ -1,6 +1,7 @@
 /check_path_mete
 /*.sh
 /*.out
+/.pre-commit-config.yaml
 
 # ML model files
 /model/intensity_model_rf.json

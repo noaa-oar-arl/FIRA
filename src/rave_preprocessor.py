@@ -42,7 +42,7 @@ def preprocessor(filename, time, lat_lim, lon_lim):
     ][0]
     f_ori = path_frp + "/" + f_ori
 
-    if os.path.isfile(f_ori) == True:
+    if os.path.isfile(f_ori) is True:
         readin = Dataset(f_ori)
         yt = np.flip(readin["grid_latt"][:, 0])
         xt = readin["grid_lont"][0, :]
