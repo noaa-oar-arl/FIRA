@@ -2,17 +2,17 @@
 
 Repository for a fire spread forecast model, generating hourly fire radiative power (FRP) prediction for air quality forecasting applications.
 
-## Required python libraries
+## Required Python libraries
 
-- Numpy
+- Keras
+- Matplotlib (for output plotting only)
+- MetPy
+- netCDF4
+- NumPy
 - pandas
 - SciPy
-- MetPy
-- datetime
-- netCDF4
-- Matplotlib (for output plotting only)
 - Tensorflow
-- Keras
+- xarray
 - XGBoost
 
 ## Components
@@ -73,7 +73,7 @@ Trained machine learning models are available in `model/fira_models.zip`
 1. Filename format: `[input name].[start time].f[simuluation time].nc`
    `input name` and `start time` can be specified in namelist.
 
-2. Input netcdf file components:
+2. Input netCDF file components:
 
 | **Variable Name**   | **Variable Description**                                                           |
 | ------------------- | ---------------------------------------------------------------------------------- |
@@ -110,7 +110,7 @@ Trained machine learning models are available in `model/fira_models.zip`
 1. Filename format: `[output name].[start time].f[forecast hour].nc`
    `output name` and `start time` can be specified in namelist.
 
-2. Output netcdf file components:
+2. Output netCDF file components:
 
 | **Variable Name**   | **Variable Description**                                               |
 | ------------------- | ---------------------------------------------------------------------- |
